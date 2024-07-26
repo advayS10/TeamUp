@@ -1,4 +1,4 @@
-import { Header, EventCard } from "./components"
+import { Header, EventCard, Login, Signup } from "./components"
 
 function App() {
   
@@ -7,6 +7,8 @@ function App() {
     <>
       <Header/>
       <EventCard />
+      <Login/>
+      <Signup/>
     </>
   )
 }
