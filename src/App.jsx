@@ -1,14 +1,18 @@
-import { Header, EventCard, Login, Signup } from "./components"
+import { Header } from "./components"
+import { Outlet } from "react-router-dom"
+
 
 function App() {
   
 
   return (
     <>
-      <Header/>
-      <EventCard />
-      <Login/>
-      <Signup/>
+      <div className="min-h-screen flex flex-wrap content-between bg-blue-950">
+        <div className="w-full block">
+          <Header/>
+          <Outlet/>
+        </div>
+      </div>
     </>
   )
 }

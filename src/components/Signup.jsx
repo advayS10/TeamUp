@@ -5,27 +5,50 @@ import { Button, Input } from './index'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form' 
+import conf from '../conf/conf'
+import axios from "axios"
+import { toast } from "react-toastify"
 
 function Signup() {
-    // const navigate = useNavigate()
+    const URL = conf.backendurl + "api/register" 
+
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [error, setError] = useState("")
     const {register, handleSubmit} = useForm()
 
-    const create = async(data) => {
-        setError("")
+    const create = async (data) => {
         try {
-            const userData = await authService.createAccount(data)
-            if(userData){
-                const userData = await authService.getCurrentUser()
-                console.log(userData)
-                if(userData) dispatch(login(userData))
-                // navigate("/")
+            const res = await axios.post("http://127.0.0.1:8000/api/register", data)
+            const formdata = res.data
+            if(formdata.success === true){
+                toast.success(formdata.message)
+                navigate('/login')
             }
+            else{
+                toast.error(formdata.messsage)
+            }
+
         } catch (error) {
-            setError(error.message)
+            console.log(error)
         }
     }
+
+    // const create = async(data) => {
+    //     setError("")
+    //     try {
+    //         const userData = await authService.createAccount(data)
+    //         if(userData){
+    //             const userData = await authService.getCurrentUser()
+    //             console.log(userData)
+    //             if(userData) dispatch(login(userData))
+    //             navigate("/")
+    //         }
+    //     } catch (error) {
+    //         setError(error.message)
+    //     }
+    // }
+
     return (
         <div className="flex items-center justify-center">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
@@ -36,12 +59,12 @@ function Signup() {
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
                 <p className="mt-2 text-center text-base text-black/60">
                     Already have an account?&nbsp;
-                    {/* <Link
+                    <Link
                         to="/login"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                        Login In
-                    </Link> */}
+                        Login
+                    </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
@@ -55,18 +78,26 @@ function Signup() {
                             required: true
                         })}
                         />
+
                         <Input 
-                        lable = "Email: "
-                        placeholder = "Enter your email"
+                        label = "Email :"
+                        placeholder = "Enter your Email"
                         type = "email"
-                        {...register("email",{
+                        {...register("email", {
                             required: true,
                             validate: {
                                 matchPatern : (value) => 
                                     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                     "Email address must be a valid address",
-                            
                             }
+                        })}
+                        />
+                        <Input 
+                        label = "Phone Number: "
+                        placeholder = "Enter your Phone Number"
+                        type = "phone"
+                        {...register("phone", {
+                            required: true
                         })}
                         />
                         <Input 
@@ -79,7 +110,7 @@ function Signup() {
                         />
                         <Button
                         type="submit"
-                        className = "w-full"
+                        className = "w-full bg-black"
                         >Create Account</Button>
                     </div>
                 </form>

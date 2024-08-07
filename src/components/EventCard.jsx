@@ -17,7 +17,7 @@ function EventCard({sport, location, date, time, total_players, user_name, playe
             <div className="flex items-center gap-2">   
                 <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">{sport} Match</h3>
             </div>
-            <div className="bg-muted rounded-full px-3 py-1 text-xs font-medium text-muted-foreground">Upcoming</div>
+            <div className="bg-muted bg-gray-300 rounded-full px-3 py-1 text-xs font-medium text-muted-foreground">Upcoming</div>
             </div>
         </div>
         <div className="p-6 grid gap-4">
@@ -96,7 +96,7 @@ function EventCard({sport, location, date, time, total_players, user_name, playe
                 </div>
             </div>
 
-            <Button className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3'>
+            <Button className='inline-flex items-center justify-center bg-black hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3'>
             Join
             </Button>
             </div>

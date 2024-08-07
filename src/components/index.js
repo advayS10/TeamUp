@@ -5,6 +5,9 @@ import Input from "./Input";
 import EventCard from "./EventCard";
 import Login from "./Login";
 import Signup from "./Signup";
+import Carousel from "./Carousel";
+import EventForm from "./Form/EventForm";
+import Select from './Select'
 
 export {
     Header,
@@ -13,5 +16,8 @@ export {
     Input,
     EventCard,
     Login,
-    Signup
+    Signup,
+    Carousel,
+    EventForm,
+    Select
 }

@@ -5,9 +5,12 @@ import { useDispatch } from 'react-redux'
 import authService from '../../appwrite/auth'
 import { logout } from '../../store/authSlice'
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const navigate = useNavigate()
 
     const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -15,15 +18,14 @@ function Header() {
 
     const dispatch = useDispatch()
     const logoutHandler = () => {
-        authService.logout()
-        .then(() => {
-            dispatch(logout())
-        })
+        dispatch(logout())
     }
 
-    // const authStatus = useSelector((state) => state.auth.status)
-    const authStatus = true
+    const authStatus = useSelector((state) => state.auth.status)
 
+    console.log(authStatus)
+
+    // const authStatus = true
 
     const navItems = [
         {
@@ -72,7 +74,7 @@ function Header() {
                 {navItems.map((item) => item.active ? (
                     <li key={item.name}>
                         <button
-                        // onClick={() => navigate(item.slug)}
+                        onClick={() => navigate(item.slug)}
                         className='inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-gray-800 rounded-full'
                         >{item.name}</button>
                     </li>
@@ -102,7 +104,7 @@ function Header() {
                 {navItems.map((item) => item.active ? (
                     <li key={item.name}>
                         <button
-                        // onClick={() => navigate(item.slug)}
+                        onClick={() => navigate(item.slug)}
                         className='block text-white mt-2'
                         >{item.name}</button>
                     </li>
