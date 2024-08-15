@@ -10,44 +10,63 @@ import axios from "axios"
 import { toast } from "react-toastify"
 
 function Signup() {
-    const URL = conf.backendurl + "api/register" 
+     
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [error, setError] = useState("")
     const {register, handleSubmit} = useForm()
 
+    // const create = async (data) => {
+    //     try {
+    //         const res = await axios.post("http://127.0.0.1:8000/api/register", data)
+    //         const formdata = res.data
+    //         if(formdata.success === true){
+    //             toast.success(formdata.message)
+    //             navigate('/login')
+    //         }
+    //         else{
+    //             toast.error(formdata.messsage)
+    //         }
+
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
     const create = async (data) => {
         try {
-            const res = await axios.post("http://127.0.0.1:8000/api/register", data)
-            const formdata = res.data
-            if(formdata.success === true){
-                toast.success(formdata.message)
-                navigate('/login')
+            
+            const response = await fetch('http://localhost:5000/api/createuser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    password: data.password,
+                    phone: data.phone,
+                })
+            })
+
+            const json = await response.json()
+
+            if(!json.success){
+                alert("Enter valid Credentials.")
             }
             else{
-                toast.error(formdata.messsage)
+                localStorage.setItem("authToken", json.authToken)
+                dispatch(login())
+                navigate('/')
             }
+            
 
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
         }
     }
 
-    // const create = async(data) => {
-    //     setError("")
-    //     try {
-    //         const userData = await authService.createAccount(data)
-    //         if(userData){
-    //             const userData = await authService.getCurrentUser()
-    //             console.log(userData)
-    //             if(userData) dispatch(login(userData))
-    //             navigate("/")
-    //         }
-    //     } catch (error) {
-    //         setError(error.message)
-    //     }
-    // }
 
     return (
         <div className="flex items-center justify-center">
@@ -78,20 +97,6 @@ function Signup() {
                             required: true
                         })}
                         />
-
-                        <Input 
-                        label = "Email :"
-                        placeholder = "Enter your Email"
-                        type = "email"
-                        {...register("email", {
-                            required: true,
-                            validate: {
-                                matchPatern : (value) => 
-                                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                    "Email address must be a valid address",
-                            }
-                        })}
-                        />
                         <Input 
                         label = "Phone Number: "
                         placeholder = "Enter your Phone Number"
@@ -100,6 +105,15 @@ function Signup() {
                             required: true
                         })}
                         />
+                        <Input 
+                        label = "Email :"
+                        placeholder = "Enter your Email"
+                        type = "email"
+                        {...register("email", {
+                            required: true
+                        })}
+                        />
+                        
                         <Input 
                         label = "Password: "
                         placeholder = "Enter your password"

@@ -8,6 +8,7 @@ import Signup from "./Signup";
 import Carousel from "./Carousel";
 import EventForm from "./Form/EventForm";
 import Select from './Select'
+import Profile from "./Profile";
 
 export {
     Header,
@@ -19,5 +20,6 @@ export {
     Signup,
     Carousel,
     EventForm,
-    Select
+    Select,
+    Profile
 }

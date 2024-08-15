@@ -14,35 +14,41 @@ function Login() {
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState()
 
+    
+
     const login = async (data) => {
-        const res = await axios.post("http://127.0.0.1:8000/api/login", data)
-        const formdata = res.data
-        if(formdata.success === true){
-            toast.success(formdata.message)
-            dispatch(authLogin()) 
-            navigate('/')
+
+        console.log(data)
+        try {
+            let response = await fetch("http://localhost:5000/api/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    email: data.email,
+                    password: data.password,
+                })
+            })
+
+            const json = await response.json()
+            console.log(json)
+
+            if(!json.success){
+                alert("Enter Valid Credentials.")
+            }
+            else{
+                localStorage.setItem("authToken", json.authToken)
+                dispatch(authLogin())
+                navigate('/')
+            }
+
+        } catch (error) {
+            console.log(error.message)
         }
     }
 
-    // const login = async (data) => {
-    //     setError("")
-    //     try {
-    //         const session = await authService.login(data)
-
-    //         if(session){
-    //             const userData = await authService.getCurrentUser()
-
-    //             if(userData){
-    //                 dispatch(authLogin(userData))
-    //             }
-    //             navigate('/')
-    //         }
-
-    //     } catch (error) {
-    //         setError(error.message)
-    //     }
-    // }
-
+    
 
   return (
     <div 
@@ -73,12 +79,7 @@ function Login() {
                     placeholder = "Enter your Email"
                     type = "email"
                     {...register("email", {
-                        required: true,
-                        validate: {
-                            matchPatern : (value) => 
-                                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                "Email address must be a valid address",
-                        }
+                        required: true
                     })}
                     />
                     <Input 
@@ -92,7 +93,7 @@ function Login() {
                     <Button 
                     type = "submit"
                     className = "w-full bg-black"
-                    >Sign in</Button>
+                    >Login</Button>
                 </div>
             </form>
             </div>

@@ -19,11 +19,13 @@ function Header() {
     const dispatch = useDispatch()
     const logoutHandler = () => {
         dispatch(logout())
+        localStorage.removeItem("authToken")
+        navigate('/login')
     }
 
     const authStatus = useSelector((state) => state.auth.status)
 
-    console.log(authStatus)
+    // console.log(authStatus)
 
     // const authStatus = true
 
