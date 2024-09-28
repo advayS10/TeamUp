@@ -17,6 +17,8 @@ app.use((req,res,next) => {
 
 app.use(express.json())
 app.use('/api', require('./routes/CreateUser'))
+app.use('/api', require('./routes/CreateProfile'))
+app.use('/api', require('./routes/CreateEvent'))
 
 
 app.get('/', (req, res) => {

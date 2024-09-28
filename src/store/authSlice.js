@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    status: false,
+    status: !!localStorage.getItem("authToken"),
     // userData: null
 }
 
@@ -15,6 +15,7 @@ const authSlice = createSlice({
         },
         logout: (state) => {
             state.status = false
+            localStorage.removeItem("authToken")
             // state.userData = null
         }
     }

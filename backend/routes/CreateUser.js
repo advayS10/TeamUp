@@ -108,4 +108,33 @@ router.post("/login",
     }
 )
 
+router.post('/user',
+    body('email').isEmail(),
+    async (req, res) => {
+        const error = validationResult(req)
+        if(!error.isEmpty()){
+            res.status(404).json({ error: error.array() })
+        }
+
+        let email = req.body.email 
+
+        try {
+            
+            const user = await User.findOne({email})
+            if (user){
+                res.send(user)
+            }
+            else{
+                res.send("User Not Found")
+            }
+            
+
+        } catch (error) {
+            console.log(error.message)
+            res.send("server error")            
+        }
+    }
+)
+
+
 module.exports = router

@@ -56,8 +56,9 @@ function Signup() {
                 alert("Enter valid Credentials.")
             }
             else{
-                localStorage.setItem("authToken", json.authToken)
-                dispatch(login())
+                let auth = localStorage.setItem("authToken", json.authToken)
+                localStorage.setItem("email", data.email)
+                if (auth) { dispatch(login()) }
                 navigate('/')
             }
             
@@ -69,7 +70,7 @@ function Signup() {
 
 
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center relative">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
                 <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">

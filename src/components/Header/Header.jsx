@@ -20,6 +20,7 @@ function Header() {
     const logoutHandler = () => {
         dispatch(logout())
         localStorage.removeItem("authToken")
+        localStorage.removeItem("email")
         navigate('/login')
     }
 
@@ -54,6 +55,11 @@ function Header() {
             name: "Signup",
             slug: "/signup",
             active: !authStatus
+        },
+        {
+            name: "Sports",
+            slug: "/sports",
+            active: authStatus
         },
         {
             name: "Profile",
