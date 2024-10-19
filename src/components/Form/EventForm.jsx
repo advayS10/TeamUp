@@ -1,54 +1,79 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, Select } from '../index'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { nanoid } from 'nanoid'
 
-function EventForm({ event }) {
+function EventForm({ preloadedValues }) {
 
     const navigate = useNavigate()
 
     const email = localStorage.getItem('email')
 
-    const {register, handleSubmit, setValue, watch, getValues, control } = useForm({
-        // defaultValues: {
-        //     sport: event?.sport || "",
-        //     location: event?.location || "",
-        //     date: event?.date || 0,
-        //     players: event?.players || 0,
-        //     time: event?.time || 0,
-        //     // user_id: event?.user_id || "",
-        //     name: event?.name || "",
-        //     // players_joined: event?.players_joined || [],
-        //     // event_id: event?.event_id || "",
-        //     description: event?.description || "",
-        //     useremail : event?.useremail || email
-        // }
+    const { id } = useParams()
+
+    const {register, handleSubmit, reset} = useForm({
+        defaultValues: preloadedValues
     })
 
-    // const navigate = useNavigate()
-    // const userData = useSelector((state) => state.auth.userData)
+    useEffect(() => {
+        if (preloadedValues) {
+            reset(preloadedValues)
+        }
+    }, [preloadedValues, reset])
+
 
     const submit = async (data) => {
         try {
-            let response = await fetch('http://localhost:5000/api/event', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    
-                    ...data, 
-                    useremail : email,
+            if ( id ){
+                const response = await fetch('http://localhost:5000/api/eventUpdate', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _id: id, // Ensure you're passing the _id to identify the event
+                        sport: data.sport,
+                        location: data.location,
+                        date: data.date,
+                        time: data.time,
+                        players: data.players,
+                        name: data.name,
+                        description: data.description,
+                        category: data.category,
+                        useremail: email,
+                    })
+                });
+        
+                const data1 = await response.json();
+                console.log(data1);
+            }
+            else{
+
+            
+                let response = await fetch('http://localhost:5000/api/event', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        
+                        ...data, 
+                        useremail : email,
+                    })
                 })
-            })
 
-            const json = await response.json()
-            console.log(json)
+                const json = await response.json()
+                console.log(json)
 
-            navigate('/events')
+            }
+
+            if (data.category === "Offline"){
+                navigate('/events')
+            }else{
+                navigate('/events/online')
+            }
 
         } catch (error) {
             console.log(error.message)
@@ -76,7 +101,7 @@ function EventForm({ event }) {
                             </label>
                             <Select
                                 id="sport"
-                                options = {['Cricket', 'Football','Hockey','Valorant',]}
+                                options = {['Cricket', 'Football', 'Hockey', 'Valorant', 'Counter Strike', 'Kabaddi', 'Apex Legend', 'Badminton', 'FC25', 'Rocket League']}
                                 // value={}
                                 // onChange={handleChange}
                                 className="flex h-10 w-full items-center justify-between rounded-md border-2 border-gray-500 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"

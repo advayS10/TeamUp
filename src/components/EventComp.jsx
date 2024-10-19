@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { Button } from '../components'
+import { useNavigate } from 'react-router-dom'
 
 function EventComp(event) {
 
     const [playerData, setPlayerData] = useState({})
+
+    const email = localStorage.getItem('email')
+
+    const navigate = useNavigate()
 
     const loadplayer = async () => {
         try {
@@ -63,6 +69,35 @@ function EventComp(event) {
         }
     }
 
+    const deleteEvent = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/eventDelete', {
+          method: "POST",
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({
+            _id: event.event._id
+          })
+          
+        })
+
+        const res = await response.json()
+        console.log(res)
+
+        navigate('/events')
+
+      } catch (error) {
+        
+      }
+    }
+
+    let joined = 0
+
+    event.event && event.event.players_joined && event.event.players_joined.length > 0 ? 
+    event.event.players_joined.map(() => (
+      joined++
+    )) : joined = 0
 
     return (
     <div className="rounded-lg border relative bg-white text-card-foreground shadow-sm w-full max-w-4xl mx-auto" data-v0-t="card">
@@ -151,12 +186,46 @@ function EventComp(event) {
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
             <span>{event.event.players} players required</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"              
+              className="w-4 h-4"
+              >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span>{joined} joined</span>
           </div>
-          <button className="inline-flex items-center bg-black text-white hover:bg-gray-300 hover:text-black justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
-          onClick={() => {addPlayer()}}
-          >
-            Join Event
-          </button>
+            <div>
+            {
+                (email === event.event.useremail) ? 
+                <Button className='inline-flex items-center mr-2 justify-center bg-red-500 hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3' 
+                onClick={() => {deleteEvent()}}
+                >Delete</Button> : <div></div>
+              }
+              {
+                (email === event.event.useremail) ? 
+                <Button className='inline-flex items-center mr-2 justify-center bg-blue-500 hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3' 
+                onClick={() => {navigate(`/eventform/${event.event._id}`)}}
+                >Edit</Button> : <div></div>
+              }
+              {
+                !(event.event.players === joined) ? <Button className='inline-flex items-center justify-center mr-2 bg-black hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3' onClick={() => {addPlayer()}}>
+                Join Event
+                </Button> : 
+                <Button className='inline-flex items-center mr-2 justify-center bg-black hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3' onClick = {()=>{navigate(`/events`)}}>
+                Full
+                </Button>
+              }
+              {/* <button className="inline-flex items-center bg-black text-white hover:bg-gray-300 hover:text-black justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
+              onClick={() => {addPlayer()}}
+              >
+                Join Event
+              </button> */}
+            </div>
         </div>
         <div className="grid gap-4">
           <div>

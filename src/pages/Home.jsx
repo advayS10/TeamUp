@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Container, EventCard, Carousel } from '../components'
-import EventComp from '../components/EventComp'
 import heroImage from '../assets/neon-bg.avif'  // Import the image
 import backgroundImage from '../assets/home-bg.avif'
 import { useNavigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 
 function Home() {  
   const nagivate = useNavigate()
@@ -86,22 +85,22 @@ function Home() {
                 <div className="option bg-gray-800 p-8 rounded-lg hover:shadow-xl transition transform hover:translate-y-2">
                   <h3 className="text-2xl font-semibold text-pink-500 mb-4">Online Games</h3>
                   <p>Find your squad for the latest online multiplayer games.</p>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/events/online'}
                     className="inline-block mt-6 bg-pink-500 hover:bg-pink-600 text-white py-3 px-8 rounded-lg font-semibold transition duration-300 transform hover:translate-y-1"
                   >
                     Find Teammates
-                  </a>
+                  </Link>
                 </div>
-                <div className="option bg-gray-800 p-8 rounded-lg hover:shadow-xl transition transform hover:translate-y-2">
+                <div className="option bg-gray-800 p-8 rounded-lg hover:shadow-xl transition transform hover:translate-y-2 ">
                   <h3 className="text-2xl font-semibold text-pink-500 mb-4">Outdoor Sports</h3>
                   <p>Join players for real-world sports like soccer, basketball, and more.</p>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/events'}
                     className="inline-block mt-6 bg-pink-500 hover:bg-pink-600 text-white py-3 px-8 rounded-lg font-semibold transition duration-300 transform hover:translate-y-1"
                   >
                     Find Players
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -27,9 +27,9 @@ router.post("/createuser",
     }),    
     async (req, res) => {
 
-        const error = validationResult(req)
-        if(!error.isEmpty()){
-            res.status(404).json({ error: error.array() })
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(404).json({ error: errors.array() }) // <-- Add return
         }
 
         const salt = await bcryt.genSalt(10)
@@ -59,7 +59,7 @@ router.post("/createuser",
 
         } catch (error) {
             console.log(error.message)
-            res.json({ success: false })
+            return res.json({ success: false , error: error})
         }
     }
 )

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Container, EventCard, Input, Button } from '../components'
 import { useNavigate } from 'react-router-dom'
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
 
-function AllEvent() {
+
+function AllEventsOnline() {
 
     const [cardData, setCardData] = useState([])
 
@@ -13,7 +11,6 @@ function AllEvent() {
 
     const navigate = useNavigate()
 
-    const authStatus = useSelector((state) => state.auth.status)
     
     const loadData = async () => {
         let response = await fetch('http://localhost:5000/api/eventData', {
@@ -48,7 +45,7 @@ function AllEvent() {
     }, [])
 
   return (
-    <div className='w-full h-full py-8'>
+    <div className='w-full py-8'>
         <Container>
             
             <div className="flex justify-between ">
@@ -60,27 +57,17 @@ function AllEvent() {
                 </div>
                 <div className='flex'>
                     <div className='pr-10'>
-                        <Button className='bg-red-600' onClick={() => {navigate('/events/online')}}>Check online Games</Button>   
+                        <Button className='bg-red-600' onClick={() => {navigate('/events')}}>Check offline Games</Button>   
                     </div>
                     <div className=''>
-                        <Button className='bg-blue-700' 
-                        onClick={() => { 
-                            if (authStatus == true){
-                                navigate('/eventform')
-                            }else{
-                                toast.error("Please Login to Add Events!")
-                            }
-                            
-                        }}
-                        >Add Your Event</Button>   
+                        <Button className='bg-blue-700' onClick={() => {navigate('/eventform')}}>Add Your Event</Button>   
                     </div>
                 </div>
             </div>
             
             <div className='flex flex-wrap pt-8'>
                 { 
-
-                    cardData.length > 0 ? cardData.filter((data) => data.category === "Offline")
+                    cardData.length > 0 ? cardData.filter((data) => data.category === "Online")
                     .filter((data) => data.location.toLowerCase().includes(search))
                     // .filter((data) => filterByDate(data.date))
                     .map((event) => (
@@ -95,4 +82,4 @@ function AllEvent() {
   )
 }
 
-export default AllEvent
+export default AllEventsOnline

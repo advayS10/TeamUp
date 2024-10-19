@@ -6,10 +6,10 @@ function Profile() {
 
     const [preloadedData, setPreloadedData] = useState({})
 
-
     const data = async () => {
         try {
             let email = localStorage.getItem("email")
+
 
             let resp = await fetch('http://localhost:5000/api/profiledata', {
                 method: "POST",
@@ -23,6 +23,7 @@ function Profile() {
 
             const profileData = await resp.json()
 
+            console.log(profileData)
 
             if(profileData){
                 const preloadedValues = {
@@ -32,7 +33,7 @@ function Profile() {
                     phone: profileData.phone,
                     email: profileData.email
                 }
-                // console.log(preloadedValues)
+                console.log(preloadedValues)
                 setPreloadedData(preloadedValues)
 
             }
@@ -56,7 +57,9 @@ function Profile() {
                     phone: userData.phone,
                     email: userData.email
                 }
-                // console.log(preloadedValues)
+
+                console.log(preloadedValues)
+
                 setPreloadedData(preloadedValues)
             }
     

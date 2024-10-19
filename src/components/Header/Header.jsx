@@ -26,7 +26,10 @@ function Header() {
 
     const authStatus = useSelector((state) => state.auth.status)
 
-    // console.log(authStatus)
+    console.log(authStatus)
+
+    console.log(localStorage.getItem('email'))
+    console.log(localStorage.getItem('authToken'))
 
     // const authStatus = true
 
@@ -42,8 +45,8 @@ function Header() {
             active: true
         },
         {
-            name: "Tournaments",
-            slug: "/tournaments",
+            name: "Players",
+            slug: "/players",
             active: true
         },
         {
@@ -57,8 +60,8 @@ function Header() {
             active: !authStatus
         },
         {
-            name: "Sports",
-            slug: "/sports",
+            name: "Games",
+            slug: "/games",
             active: authStatus
         },
         {

@@ -13,6 +13,12 @@ import Event from './pages/Event.jsx'
 import AddEvent from './pages/AddEvent.jsx'
 import EventPage from './pages/EventPage.jsx'
 import Sports from './pages/Sports.jsx'
+import EventOnline from './pages/EventOnline.jsx'
+import AllEventsOnline from './pages/AllEventsOnline.jsx'
+import Tournaments from './pages/Tournaments.jsx'
+import EditForm from './pages/EditForm.jsx'
+import { ToastContainer } from 'react-toastify';
+import Players from './pages/Players.jsx'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +42,7 @@ const router = createBrowserRouter([
         element: <Profile/>
       },
       {
-        path: '/sports',
+        path: '/Games',
         element: <Sports/>
       },
       {
@@ -50,6 +56,22 @@ const router = createBrowserRouter([
       {
         path: '/eventform',
         element: <AddEvent/>
+      },
+      {
+        path: '/eventform/:id',
+        element: <EditForm/>
+      },
+      {
+        path: '/events/online',
+        element: <EventOnline/>,
+      },
+      {
+        path: '/events/online/:id',
+        element: <AllEventsOnline />
+      },
+      {
+        path: '/players',
+        element: <Players/>
       }
     ]
   }
@@ -60,6 +82,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
     <RouterProvider router={router}/>
+    <ToastContainer />
     </Provider>
   </React.StrictMode>,
 )

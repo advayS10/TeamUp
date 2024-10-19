@@ -59,8 +59,10 @@ router.post('/profiledata', async (req, res) => {
         if (userProfile){
             res.send(userProfile)
         }
+        else{
+            res.send(false)
+        }
 
-        
     } catch (error) {
         res.send("Server Error")
     }

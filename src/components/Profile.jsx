@@ -7,23 +7,19 @@ function Profile({preloadedValues}) {
     const options = [
         {value: 'Cricket', label: 'Cricket'},
         {value: 'Football', label: 'Football'},
-        {value: 'Hockey', label: 'Hockey'},
+        {value: 'Kabaddi', label: 'Kabaddi'},
         {value: 'Valorant', label: 'Valorant'},
-        {value: 'Call of Duty', label: 'Call of Duty'},
+        {value: 'FC25', label: 'FC25'},
+        {value: 'Badminton', label: 'Badminton'},
+        {value: 'Counter Strike', label: 'Counter Strike'},
+        {value: 'Basketball', label: 'Basketball'},
+        {value: 'Hockey', label: 'Hockey'},
+        {value: 'Apex Legend', label: 'Apex Legend'},
     ]
 
     const [editable, setEditable] = useState(false)
     const [readonly, setReadonly] = useState(true)
     
-
-    // const preloadedValues = {
-    //     name: "Advay",
-    //     location: "Andheri",
-    //     interest: [],
-    //     phone: "1234567890",
-    //     email: "adi@gmail.com"
-    // }
-
     const { register, handleSubmit, control, reset } = useForm({
         defaultValues: preloadedValues
     })

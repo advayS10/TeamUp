@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import authService from '../appwrite/auth'
-import { login } from '../store/authSlice'
+import { login as authlogin } from '../store/authSlice'
 import { Button, Input } from './index'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -16,23 +16,6 @@ function Signup() {
     const dispatch = useDispatch()
     const [error, setError] = useState("")
     const {register, handleSubmit} = useForm()
-
-    // const create = async (data) => {
-    //     try {
-    //         const res = await axios.post("http://127.0.0.1:8000/api/register", data)
-    //         const formdata = res.data
-    //         if(formdata.success === true){
-    //             toast.success(formdata.message)
-    //             navigate('/login')
-    //         }
-    //         else{
-    //             toast.error(formdata.messsage)
-    //         }
-
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
     const create = async (data) => {
         try {
@@ -51,14 +34,16 @@ function Signup() {
             })
 
             const json = await response.json()
+            
+            console.log(json)
 
             if(!json.success){
-                alert("Enter valid Credentials.")
+                alert("Enter valid credentials")
             }
             else{
-                let auth = localStorage.setItem("authToken", json.authToken)
+                localStorage.setItem("authToken", json.authToken)
                 localStorage.setItem("email", data.email)
-                if (auth) { dispatch(login()) }
+                dispatch(authlogin())
                 navigate('/')
             }
             

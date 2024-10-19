@@ -27,7 +27,7 @@ router.post('/event', async (req, res) => {
 router.post('/eventUpdate', async (req, res) => {
     try {
         await Event.findOneAndUpdate(
-            { _id: req.body._id },  // Find the event by its _id
+            { _id: req.body._id },  
             {
                 $set: {
                     sport: req.body.sport,
@@ -40,11 +40,12 @@ router.post('/eventUpdate', async (req, res) => {
                     useremail: req.body.useremail,
                     category: req.body.category,
                 },
-                $push: { players_joined: req.body.player }  // Append the new player to the array
+                $push: { players_joined: req.body.player }  
             },
-            { new: true }  // Return the updated document
+            { new: true } 
         );
 
+        
         return res.json({ success: true });
     } catch (error) {
         console.log(error.message);
@@ -75,5 +76,24 @@ router.get(`/eventData/:id`, async (req, res) => {
         return res.json({ success: false })
     }
 })
+
+router.post('/eventDelete', async (req, res) => {
+    
+    try {
+        // Correctly delete the event by its ID using findByIdAndDelete
+        const event = await Event.findByIdAndDelete(req.body._id);
+
+        if (!event) {
+            return res.status(404).json({ success: false, message: "Event not found" });
+        }
+
+        return res.json({ success: true });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+
 
 module.exports = router
