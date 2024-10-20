@@ -20,7 +20,8 @@ function Signup() {
     const create = async (data) => {
         try {
             
-            const response = await fetch('http://localhost:5000/api/createuser', {
+            // const response = await fetch('http://localhost:5000/api/createuser', {
+            const response = await fetch('https://backend-aa41itfm7-advays-projects-48a8343d.vercel.app/api/createuser', {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
