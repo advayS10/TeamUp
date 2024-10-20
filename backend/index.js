@@ -6,7 +6,7 @@ const cors = require('cors')
 
 mongoDB()
 
-const allowedOrigins = [ "http://localhost:5173" , "https://team-up-six.vercel.app"]
+const allowedOrigins = [ "http://localhost:5173" , "https://team-up-six.vercel.app", "https://backend-4baz8jqe8-advays-projects-48a8343d.vercel.app"]
 
 // app.use((req,res,next) => {
 //   res.setHeader("Access-Control-Allow-Origin", allowedOrigins)
