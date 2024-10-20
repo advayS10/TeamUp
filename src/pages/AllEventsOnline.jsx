@@ -13,8 +13,8 @@ function AllEventsOnline() {
 
     
     const loadData = async () => {
-        // let response = await fetch('http://localhost:5000/api/eventData', {
-        let response = await fetch('https://backend-4baz8jqe8-advays-projects-48a8343d.vercel.app/api/eventData', {
+        let response = await fetch('http://localhost:5000/api/eventData', {
+        // let response = await fetch('https://backend-4baz8jqe8-advays-projects-48a8343d.vercel.app/api/eventData', {
             method: "GET",
             headers:{
                 'Content-Type':'application/json'
