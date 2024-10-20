@@ -5,10 +5,10 @@ const mongoDB = require('./db')
 
 mongoDB()
 
-
+const allowedOrigins = [ "http://localhost:5173" , "https://team-up-six.vercel.app"]
 
 app.use((req,res,next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173" || "https://team-up-six.vercel.app")
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigins)
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
