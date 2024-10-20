@@ -6,7 +6,7 @@ const mongoDB = require('./db')
 mongoDB()
 
 app.use((req,res,next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173", "https://team-up-six.vercel.app/login")
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173" || "https://team-up-six.vercel.app/login")
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
