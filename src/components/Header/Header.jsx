@@ -26,10 +26,10 @@ function Header() {
 
     const authStatus = useSelector((state) => state.auth.status)
 
-    console.log(authStatus)
+    // console.log(authStatus)
 
-    console.log(localStorage.getItem('email'))
-    console.log(localStorage.getItem('authToken'))
+    // console.log(localStorage.getItem('email'))
+    // console.log(localStorage.getItem('authToken'))
 
     // const authStatus = true
 
@@ -44,11 +44,11 @@ function Header() {
             slug: "/events",
             active: true
         },
-        {
-            name: "Players",
-            slug: "/players",
-            active: true
-        },
+        // {
+        //     name: "Players",
+        //     slug: "/players",
+        //     active: true
+        // },
         {
             name: "Login",
             slug: "/login",

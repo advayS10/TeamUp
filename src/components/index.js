@@ -10,6 +10,7 @@ import EventForm from "./Form/EventForm";
 import Select from './Select'
 import Profile from "./Profile";
 import Footer from "./Footer";
+import PlayerInvite from "./PlayerInvite";
 
 export {
     Header,
@@ -23,5 +24,6 @@ export {
     EventForm,
     Select,
     Profile,
-    Footer
+    Footer,
+    PlayerInvite
 }

@@ -68,5 +68,15 @@ router.post('/profiledata', async (req, res) => {
     }
 })
 
+router.get('/allplayerdata', async (req, res) => {
+    try {
+        const players = await Profile.find()
+        return res.json({success: true, players})
+    } catch (error) {
+        console.log(error.message)
+        return res.json({ success: false })
+    }
+})
+
 
 module.exports = router

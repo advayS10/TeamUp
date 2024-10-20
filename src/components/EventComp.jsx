@@ -213,6 +213,12 @@ function EventComp(event) {
                 >Edit</Button> : <div></div>
               }
               {
+                (email === event.event.useremail) ? 
+                <Button className='inline-flex items-center mr-2 justify-center bg-black hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3' 
+                onClick={() => {navigate(`/players`)}}
+                >Invite Other</Button> : <div></div>
+              }
+              {
                 !(event.event.players === joined) ? <Button className='inline-flex items-center justify-center mr-2 bg-black hover:bg-gray-300 hover:text-black whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3' onClick={() => {addPlayer()}}>
                 Join Event
                 </Button> : 
