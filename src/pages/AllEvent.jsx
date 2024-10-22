@@ -84,6 +84,7 @@ function AllEvent() {
                     cardData.length > 0 ? cardData.filter((data) => data.category === "Offline")
                     .filter((data) => data.location.toLowerCase().includes(search))
                     // .filter((data) => filterByDate(data.date))
+                    .sort((a, b) => new Date(a.date) - new Date(b.date))
                     .map((event) => (
                     <div key={event._id} className='p-2 w-[400px] '>
                         <EventCard event={event} />

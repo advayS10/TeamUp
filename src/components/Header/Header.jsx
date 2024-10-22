@@ -68,7 +68,12 @@ function Header() {
             name: "Profile",
             slug: "/profile",
             active: authStatus
-        }
+        },
+        // {
+        //     name: "Invitations",
+        //     slug: "/invitations",
+        //     active: authStatus
+        // }
 
     ]
 

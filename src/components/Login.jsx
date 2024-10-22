@@ -19,7 +19,7 @@ function Login() {
     const login = async (data) => {
 
         try {
-            let response = await fetch("https://backend-orcin-xi-69.vercel.app/api/login", {
+            let response = await fetch("http://localhost:5000/api/login", {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'
