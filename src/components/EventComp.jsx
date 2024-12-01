@@ -62,7 +62,7 @@ function EventComp(event) {
             const data = await response.json();
             console.log(data);
 
-            window.location.reload();
+            // window.location.reload();
 
         } catch (error) {
             console.log(error.message)
