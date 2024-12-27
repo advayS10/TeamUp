@@ -12,8 +12,12 @@ import apex from '../assets/apex.avif'
 import fc25 from '../assets/fc25.avif'
 import bg from '../assets/home-bg.avif'
 import { Container } from '../components'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Sports() {
+    const navigate = useNavigate()
+
   return (
     <>
         <section className="py-16 relative" >
@@ -29,7 +33,9 @@ function Sports() {
                 {/* Grid for Games */}
                 <div className="grid grid-cols-2 gap-16">
                 {/* Game 1 - Football */}
-                <a className="game-card transform transition-transform hover:scale-105">
+                <a 
+                    
+                    className="game-card transform transition-transform hover:scale-105">
                     <div className="relative w-full pt-[75%] overflow-hidden rounded-lg shadow-lg">
                     <img
                         src={football}

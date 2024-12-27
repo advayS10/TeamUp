@@ -18,7 +18,7 @@ function PlayerInvite({data}) {
                 <div className="flex ">
                     {
                         data.interest.map((interest) => (
-                            <li className='text-sm list-disc pr-4'>{interest}</li>
+                            <li className='text-sm list-disc pr-4'key={interest} >{interest}</li>
                         ))
                     }
                 </div>

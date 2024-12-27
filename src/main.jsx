@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         element: <Sports/>
       },
       {
-        path: '/events',
+        path: `/events`,
         element: <Event/>,
       },
       {
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
         element: <AllEventsOnline />
       },
       {
-        path: '/players',
+        path: '/players/:id',
         element: <Players/>
       },
       {

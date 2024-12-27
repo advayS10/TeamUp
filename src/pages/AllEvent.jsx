@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 function AllEvent() {
 
@@ -42,8 +43,9 @@ function AllEvent() {
         // Check if the event is today or in the future
         return eventDateTime >= currentDate.setHours(0, 0, 0, 0) // Keeps events from today or later
     }
-    
 
+    const { game } = useParams()
+    
     useEffect(() => {
         loadData()
     }, [])
@@ -82,9 +84,10 @@ function AllEvent() {
                 { 
 
                     cardData.length > 0 ? cardData.filter((data) => data.category === "Offline")
+                    .filter((data) => game === undefined || data.sport.includes(game))
                     .filter((data) => data.location.toLowerCase().includes(search))
                     // .filter((data) => filterByDate(data.date))
-                    .sort((a, b) => new Date(a.date) - new Date(b.date))
+                    // .sort((a, b) => new Date(a.date) - new Date(b.date))
                     .map((event) => (
                     <div key={event._id} className='p-2 w-[400px] '>
                         <EventCard event={event} />

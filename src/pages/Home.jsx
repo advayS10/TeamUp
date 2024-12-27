@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 function Home() {  
-  const nagivate = useNavigate()
+  const navigate = useNavigate()
+
+  const email = localStorage.getItem('email')
 
   return (
     <>
@@ -30,8 +32,8 @@ function Home() {
                 you find the perfect teammates to match your skill level and interests.
               </p>
               <a
-                className="bg-pink-500 hover:bg-pink-600 text-white py-3 px-8 rounded-lg font-semibold transition duration-300 transform hover:translate-y-1"
-                onClick={() => nagivate('/signup')}
+                className="bg-pink-500 hover:bg-pink-600 text-white py-3 px-8 rounded-lg font-semibold transition duration-300 transform hover:translate-y-1 cursor-pointer"
+                onClick={() => { email ? navigate('/events') : navigate('/signup')}}
               >
                 Get Started
               </a>

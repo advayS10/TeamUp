@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import authService from '../../appwrite/auth'
 import { logout } from '../../store/authSlice'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -86,13 +86,13 @@ function Header() {
           TeamUp
         </div>
         <div className="hidden md:flex space-x-4 text-white">
-            <ul className='flex ml-auto'>
+            <ul className='flex ml-auto gap-2'>
                 {navItems.map((item) => item.active ? (
                     <li key={item.name}>
-                        <button
-                        onClick={() => navigate(item.slug)}
-                        className='inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-gray-800 rounded-full'
-                        >{item.name}</button>
+                        <NavLink to={item.slug}
+                        // onClick={() => navigate(item.slug)}
+                        className={({isActive}) => isActive ? "inline-block px-6 py-2 text-gray-800 duration-200 bg-blue-200 rounded-full" : "inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-gray-800 rounded-full" } 
+                        >{item.name}</NavLink>
                     </li>
                 ) : null
                 )}
