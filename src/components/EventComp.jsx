@@ -87,6 +87,10 @@ function EventComp() {
             const data = await response.json();
             console.log(data);
 
+<<<<<<< HEAD
+=======
+            // window.location.reload();
+>>>>>>> a54b143d09f694bb92fac0594c32a0b78c85a812
 
         } catch (error) {
             console.log(error.message)
