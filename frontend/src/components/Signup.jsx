@@ -17,7 +17,7 @@ function Signup() {
     const create = async (data) => {
         try {
             
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/createuser`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/createuser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
