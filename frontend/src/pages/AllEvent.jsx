@@ -17,7 +17,7 @@ function AllEvent() {
     const authStatus = useSelector((state) => state.auth.status)
     
     const loadData = async () => {
-        let response = await fetch('http://localhost:5000/api/eventData', {
+        let response = await fetch(`${import.meta.env.VITE_API_URL}/api/eventData`, {
             method: "GET",
             headers:{
                 'Content-Type':'application/json'

@@ -11,7 +11,7 @@ function Profile() {
             let email = localStorage.getItem("email")
 
 
-            let resp = await fetch('http://localhost:5000/api/profiledata', {
+            let resp = await fetch(`${import.meta.env.VITE_API_URL}/api/profiledata`, {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'
@@ -39,7 +39,7 @@ function Profile() {
 
             }
             else{
-                let response = await fetch('http://localhost:5000/api/user', {
+                let response = await fetch(`${import.meta.env.VITE_API_URL}/api/user`, {
                     method: "POST",
                     headers:{
                         'Content-Type':'application/json'

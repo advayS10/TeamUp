@@ -33,7 +33,7 @@ function Profile({preloadedValues}) {
 
     const createProfile = async (data) => {
         try {
-            let response = await fetch("http://localhost:5000/api/profile", {
+            let response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
                 method: "POST",
                 headers:{
                     'Content-Type':'application/json'

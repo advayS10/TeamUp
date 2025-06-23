@@ -27,7 +27,7 @@ function EventForm({ preloadedValues }) {
     const submit = async (data) => {
         try {
             if ( id ){
-                const response = await fetch('http://localhost:5000/api/eventUpdate', {
+                const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/eventUpdate`, {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ function EventForm({ preloadedValues }) {
             else{
 
             
-                let response = await fetch('http://localhost:5000/api/event', {
+                let response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/event`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

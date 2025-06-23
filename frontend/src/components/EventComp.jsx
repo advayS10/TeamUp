@@ -11,7 +11,7 @@ function EventComp() {
 
     const getData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/eventData/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/eventData/${id}`, {
                 method: "GET",
                 headers:{
                     'Content-Type':'application/json'
@@ -39,7 +39,7 @@ function EventComp() {
         try {
             let email = localStorage.getItem("email")
 
-            let resp = await fetch('http://localhost:5000/api/profiledata', {
+            let resp = await fetch(`${import.meta.env.VITE_API_URL}/api/profiledata`, {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'
@@ -64,7 +64,7 @@ function EventComp() {
 
     const addPlayer = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/eventUpdate', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/eventUpdate`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ function EventComp() {
 
     const leaveEvent = async () => {
       try {
-          const response = await fetch('http://localhost:5000/api/eventLeave', {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/eventLeave`, {
               method: "POST",
               headers: {
                   'Content-Type': 'application/json'
@@ -126,7 +126,7 @@ function EventComp() {
 
     const deleteEvent = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/eventDelete', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/eventDelete`, {
           method: "POST",
           headers: {
             'Content-Type':'application/json'
