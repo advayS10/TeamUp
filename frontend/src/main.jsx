@@ -19,7 +19,7 @@ import Tournaments from './pages/Tournaments.jsx'
 import EditForm from './pages/EditForm.jsx'
 import { ToastContainer } from 'react-toastify';
 import Players from './pages/Players.jsx'
-import Invitation from './pages/Invitation.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -74,10 +74,6 @@ const router = createBrowserRouter([
         path: '/players/:id',
         element: <Players/>
       },
-      {
-        path: '/invitations',
-        element: <Invitation/>
-      }
     ]
   }
 ])
@@ -87,7 +83,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
     <RouterProvider router={router}/>
-    <ToastContainer />
+    <ToastContainer autoClose={1000} />
     </Provider>
   </React.StrictMode>,
 )

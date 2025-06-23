@@ -1,13 +1,10 @@
 import React, {useState} from 'react'
-import authService from '../appwrite/auth'
 import { login as authlogin } from '../store/authSlice'
 import { Button, Input } from './index'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form' 
-import conf from '../conf/conf'
-import axios from "axios"
-import { toast } from "react-toastify"
+
 
 function Signup() {
      

@@ -11,6 +11,7 @@ import Select from './Select'
 import Profile from "./Profile";
 import Footer from "./Footer";
 import PlayerInvite from "./PlayerInvite";
+import InvitationsModal from "./Modal/InvitationsModal";
 
 export {
     Header,
@@ -25,5 +26,6 @@ export {
     Select,
     Profile,
     Footer,
-    PlayerInvite
+    PlayerInvite,
+    InvitationsModal
 }

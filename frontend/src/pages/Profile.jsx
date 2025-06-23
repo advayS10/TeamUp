@@ -24,6 +24,7 @@ function Profile() {
             const profileData = await resp.json()
 
             console.log(profileData)
+            localStorage.setItem("userid", profileData._id)
 
             if(profileData){
                 const preloadedValues = {
@@ -67,6 +68,10 @@ function Profile() {
             console.log(error.message)
         }
     }
+
+    
+
+    console.log(localStorage.getItem("userid"))
 
     useEffect(() => {
         data()

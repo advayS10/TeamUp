@@ -18,7 +18,6 @@ function AllEvent() {
     
     const loadData = async () => {
         let response = await fetch('http://localhost:5000/api/eventData', {
-        // let response = await fetch('https://backend-4baz8jqe8-advays-projects-48a8343d.vercel.app/api/eventData', {
             method: "GET",
             headers:{
                 'Content-Type':'application/json'
@@ -84,7 +83,7 @@ function AllEvent() {
                 { 
 
                     cardData.length > 0 ? cardData.filter((data) => data.category === "Offline")
-                    .filter((data) => game === undefined || data.sport.includes(game))
+
                     .filter((data) => data.location.toLowerCase().includes(search))
                     // .filter((data) => filterByDate(data.date))
                     // .sort((a, b) => new Date(a.date) - new Date(b.date))

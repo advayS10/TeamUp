@@ -8,12 +8,12 @@ function Invites() {
           <div className="flex items-center space-x-4">
             <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
               <span className="text-lg font-semibold text-gray-600">
-                {inviterName.split(' ').map(n => n[0]).join('').toUpperCase()}
+                {/* {inviterName.split(' ').map(n => n[0]).join('').toUpperCase()} */}
               </span>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900">Invitation from {inviterName}</h3>
-              <p className="text-xs text-gray-500">{sport}</p>
+              <h3 className="text-sm font-semibold text-gray-900">Invitation from </h3>
+              <p className="text-xs text-gray-500">{}</p>
             </div>
           </div>
           <Link

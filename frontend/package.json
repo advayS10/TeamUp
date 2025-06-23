@@ -12,7 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
     "appwrite": "^15.0.0",
-    "axios": "^1.7.3",
+    "axios": "^1.7.9",
     "express": "^4.19.2",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",

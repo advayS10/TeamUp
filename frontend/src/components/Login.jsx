@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import authService from '../appwrite/auth'
+
 import { login as authLogin } from '../store/authSlice'
 import { Button, Input } from './index'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { toast } from 'react-toastify'
+
 
 function Login() {
     const dispatch = useDispatch()

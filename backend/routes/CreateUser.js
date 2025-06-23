@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 
 const bcryt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const jwtSecret = "Thisisjwtsecrettokenofteamupwebs"
+const jwtSecret = process.env.JWT_SECRET
 
 
 router.post("/createuser", 

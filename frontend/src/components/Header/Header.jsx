@@ -2,10 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import { Container } from '..'
 import { useDispatch } from 'react-redux'
-import authService from '../../appwrite/auth'
 import { logout } from '../../store/authSlice'
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { InvitationsModal } from '../index'
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +32,13 @@ function Header() {
     // console.log(localStorage.getItem('authToken'))
 
     // const authStatus = true
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
+
+    const userid = localStorage.getItem("userid")
 
     const navItems = [
         {
@@ -104,7 +111,22 @@ function Header() {
                         >Logout</button>
                     </li>
                 )}
+                {authStatus && (
+                    <button
+                    onClick={handleOpenModal}
+                    className="inline-block px-6 py-2 text-white  duration-200 hover:bg-blue-200 hover:text-gray-800 rounded-full"
+                >
+                    Invitations
+                </button>
+                )}
             </ul>
+            <div className="">
+                <InvitationsModal
+                    userId={userid}
+                    isOpen={isModalOpen}
+                    onClose={handleCloseModal}
+                />
+            </div>
         </div>
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-white">
@@ -133,6 +155,14 @@ function Header() {
                         className='block text-white mt-2'
                         >Logout</button>
                     </li>
+                )}
+                {authStatus && (
+                    <button
+                    onClick={handleOpenModal}
+                    className="inline-block px-6 py-2 text-white  duration-200 hover:bg-blue-200 hover:text-gray-800 rounded-full"
+                >
+                    Invitations
+                </button>
                 )}
             </ul>
         </div>

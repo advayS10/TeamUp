@@ -1,7 +1,47 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function PlayerInvite({data}) {
 
+    const eventId = useParams().id
+    const userId = localStorage.getItem("userid")
+
+    const invite = async (playerId) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/invite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    event: eventId,
+                    invited_by: userId,
+                    invited_to: playerId
+                })
+            })
+
+            const data = await response.json()
+
+            console.log(data)
+
+            if(data.success){
+                toast.success("Invitation Sent!", {
+                    theme: "dark"
+                })
+            }
+            else{
+                toast.warn(data.message, {
+                    theme: "dark"
+                })
+            }
+            
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+    
 
   return (
     <>
@@ -24,7 +64,9 @@ function PlayerInvite({data}) {
                 </div>
                 </div>
             </div>
-            <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button 
+            onClick={() => invite(data._id)}
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <svg
                 className="w-4 h-4 mr-2"
                 xmlns="http://www.w3.org/2000/svg"
