@@ -75,7 +75,7 @@ Run frontend:
 npm run dev
 ```
 
-###📂 Folder Structure
+## 📂 Folder Structure
 
 ```bash
 teamup/
@@ -84,7 +84,7 @@ teamup/
 ├── README.md
 ```
 
-###📌 Upcoming Features
+## 📌 Upcoming Features
 
 - 🗓 Calendar view for upcoming events
 - 🔔 Real-time notifications
