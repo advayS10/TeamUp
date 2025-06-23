@@ -12,7 +12,7 @@ mongoDB()
 
 const allowedOrigins = [ 
   "http://localhost:5173",
-  "https://teamup-6goy.onrender.com/"
+  "https://teamup-6goy.onrender.com"
 ]
 
 
