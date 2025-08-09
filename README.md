@@ -16,10 +16,10 @@ TeamUp is a full-stack web application designed to help users discover, join, an
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
 
-<!--## 🚀 Live Demo
+## 🚀 Live Demo
 
 🌐 [Live Site](https://teamup-6goy.onrender.com) 
-⚙️ Backend API: Hosted on [Render](https://render.com)-->
+⚙️ Backend API: Hosted on [Render](https://render.com)
 
 ## 🛠️ Getting Started Locally
 
